@@ -4,6 +4,10 @@ import Layout from './components/Layout/Layout';
 import UserProfile from './components/Profile/UserProfile';
 import AuthPage from './pages/AuthPage';
 import HomePage from './pages/HomePage';
+import LoginCompletePage from './pages/LoginCompletePage';
+
+
+
 
 function App() {
   return (
@@ -17,6 +21,9 @@ function App() {
         </Route>
         <Route path='/profile'>
           <UserProfile />
+        </Route>
+        <Route path='/loginCompletePage'>
+          <LoginCompletePage />
         </Route>
       </Switch>
     </Layout>
