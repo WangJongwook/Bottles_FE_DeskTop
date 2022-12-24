@@ -20,56 +20,80 @@ const AuthForm = () => {
 
     const enteredId = idInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
-    const enteredName = nameInputRef.current.value;
-    const enteredEmail = emailInputRef.current.value;
-    const enteredPreface = prefaceInputRef.current.value;
 
-    //optional : Add validation
-
-    let object;
     let url;
+
+    //로그인
     if(isLogin){
-      url = '/api/login/.';
-      object = {
-        id: enteredId,
-        pw: enteredPassword
-      };
-    } else {
-      url = "/api/user/register/";
-      object = {
-        id: enteredId,
-        pw: enteredPassword,
-        name: enteredName,
-        email: enteredEmail,
-        preface: enteredPreface
-      }
+      url = 'http://127.0.0.1:8000/api/login/.';
+      fetch(url, {
+        method: 'POST',
+        body: JSON.stringify({
+          id: enteredId,
+          pw: enteredPassword
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: "application/json",
+        }
+      }).then((res) => {
+        if (res.ok) {
+          console.log(res);
+          return res.json();
+        } else {
+          return res.json().then(data => {
+            let errorMessage = 'Authentication failed';
+            
+            throw new Error(errorMessage);
+          });
+        }
+      })
+      .then((data) =>{
+        console.log(data);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+    } 
+      //회원가입
+      else {
+      const enteredName = nameInputRef.current.value;
+      const enteredEmail = emailInputRef.current.value;
+      const enteredPreface = prefaceInputRef.current.value;
+      url = "http://127.0.0.1:8000/api/user/register/";
+      fetch(url, {
+        method: 'POST',
+        body: JSON.stringify({
+          id: enteredId,
+          pw: enteredPassword,
+          name: enteredName,
+          email: enteredEmail,
+          preface: enteredPreface
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: "application/json",
+        }
+      }).then((res) => {
+        if (res.ok) {
+          console.log(res);
+          return res.json();
+        } else {
+          return res.json().then(data => {
+            let errorMessage = 'Authentication failed';
+            
+            throw new Error(errorMessage);
+          });
+        }
+      })
+      .then((data) =>{
+        console.log(data);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
     }
-    fetch(url, {
-      method: 'POST',
-      body: JSON.stringify({
-        object
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then((res) => {
-      if (res.ok) {
-        console.log(res);
-        return res.json();
-      } else {
-        return res.json().then(data => {
-          let errorMessage = 'Authentication failed';
-          
-          throw new Error(errorMessage);
-        });
-      }
-    })
-    .then((data) =>{
-      console.log(data);
-    })
-    .catch((err) => {
-      alert(err.message);
-    });
+    
   };
   return (
     <section className={classes.auth}>
