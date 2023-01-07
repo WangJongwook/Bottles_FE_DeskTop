@@ -1,5 +1,6 @@
 import { useContext } from "react";
 
+import SideBar from "../components/SideBar/SideBar";
 import AuthContext from "../store/auth-context";
 
 const LoginCompletePage = () => {
@@ -9,8 +10,8 @@ const LoginCompletePage = () => {
 
   return (
     <section>
-      <h1>Your token is..</h1>
-      <h2>{authCtx.token}</h2>
+      {/* <h2>{authCtx.token}</h2> */}
+      <SideBar></SideBar>
     </section>
   );
 };
