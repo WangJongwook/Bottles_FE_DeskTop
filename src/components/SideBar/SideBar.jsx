@@ -76,69 +76,70 @@ const SideBar = ({ children }) => {
 
   return (
     <>
-      <main>{children}</main>
-      <div className="big-container">
-        {/* 토글바 */}
-        <div className="top_section">
-          <div className="bars">
-            <RiArrowRightSFill size="50" onClick={toggle} />
-          </div>
-        </div>
-        {/* 메인컨테이너 */}
-        <div className="main-container">
-          <motion.div
-            animate={{
-              width: isOpen ? "200px" : "90px",
-              transition: {
-                duration: 0.5,
-                type: "spring",
-                damping: 10,
-              },
-            }}
-            className={`sidebar `}
-          >
-            {/* 사이드바 목록  */}
-            <section className="routes">
-              {routes.map((route, index) => {
-                if (route.subRoutes) {
-                  return (
-                    <SideBarMenu
-                      setIsOpen={setIsOpen}
-                      route={route}
-                      showAnimation={showAnimation}
-                      isOpen={isOpen}
-                    />
-                  );
-                }
-                // 애니메이션
+      {/* 스크린 */}
+      {/* <div className="screen">{children}</div> */}
+      <div className="screen">screen</div>
+
+      {/* 사이드 바 */}
+        <motion.div
+          animate={{
+            width: isOpen ? "140px" : "0px",
+            transition: {
+              duration: 0.5,
+              type: "spring",
+              damping: 10,
+            },
+          }}
+          className={`sidebar `}
+        >
+          {/* 사이드바 목록  */}
+          <section className="routes">
+            {routes.map((route, index) => {
+              if (route.subRoutes) {
                 return (
-                  <NavLink
-                    to={route.path}
-                    key={index}
-                    className="link"
-                    activeclassname="active"
-                  >
-                    <div className="icon">{route.icon}</div>
-                    <AnimatePresence>
-                      {isOpen && (
-                        <motion.div
-                          variants={showAnimation}
-                          initial="hidden"
-                          animate="show"
-                          exit="hidden"
-                          className="link_text"
-                        >
-                          {route.name}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </NavLink>
+                  <SideBarMenu
+                    setIsOpen={setIsOpen}
+                    route={route}
+                    showAnimation={showAnimation}
+                    isOpen={isOpen}
+                  />
                 );
-              })}
-            </section>
-          </motion.div>
-        </div>
+              }
+              // 애니메이션
+              return (
+                <NavLink
+                  to={route.path}
+                  key={index}
+                  className="link"
+                  activeclassname="active"
+                >
+                  <div className="icon">{route.icon}</div>
+                  <AnimatePresence>
+                    {isOpen && (
+                      <motion.div
+                        variants={showAnimation}
+                        initial="hidden"
+                        animate="show"
+                        exit="hidden"
+                        className="link_text"
+                      >
+                        {route.name}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </NavLink>
+              );
+            })}
+          </section>
+        </motion.div>
+
+        {/* 토글바 */}
+      <div className="toggle-bar-container">
+      <div className="toggle-bar">
+        <RiArrowRightSFill size="50" onClick={toggle} />
       </div>
+      </div>
+
     </>
   );
 };

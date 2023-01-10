@@ -9,10 +9,7 @@ const LoginCompletePage = () => {
   //let token = authCtx.login(token);
 
   return (
-    <section>
-      {/* <h2>{authCtx.token}</h2> */}
-      <SideBar></SideBar>
-    </section>
+    <SideBar/>
   );
 };
 
