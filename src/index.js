@@ -1,16 +1,16 @@
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import ReactDOM from 'react-dom';
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import './index.css';
 import App from './App';
-import {AuthContextProvider} from './store/auth-context';
+import reportWebVitals from "./reportWebVitals";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <AuthContextProvider>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </AuthContextProvider>
-  
+//import {AuthContextProvider} from './store/auth-context';
+
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
 );

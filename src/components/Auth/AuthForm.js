@@ -1,11 +1,12 @@
 import { useState, useRef, useContext } from "react";
+import { useNavigate } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 
 import AuthContext from '../../store/auth-context';
 import classes from "./AuthForm.module.css";
 
 const AuthForm = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const idInputRef = useRef();
   const passwordInputRef = useRef();
   const nameInputRef = useRef();
@@ -56,7 +57,7 @@ const AuthForm = () => {
       .then((data) =>{
         console.log(data);
         authCtx.login(data.token)
-        history.replace('/loginCompletePage');
+        navigate("/loginCompletePage")
       })
       .catch((err) => {
         alert(err.message);
