@@ -1,5 +1,13 @@
+import SideBar from "../components/SideBar/SideBar";
+
+
 const Search = () => {
-  return <div className="title">검색</div>;
+  return (
+    <section>
+      <div className="main-screen"> 검색</div>
+      <SideBar/>
+    </section>
+  );
 };
 
 export default Search;

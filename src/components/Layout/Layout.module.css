@@ -1,0 +1,6 @@
+.main {
+    border: 5px solid black;
+    margin: 3rem auto;
+    width: 50%;
+    max-width: 35rem;
+  }

@@ -76,8 +76,8 @@ const SideBar = ({ children }) => {
 
   return (
     <>
-      {/* 스크린 */}
-      <div className="screen">scrreeennn</div>
+      {/* 스크린
+      <div className="screen">scrreeennn</div> */}
       {/* 사이드 바 */}
       <motion.div
         animate={{
